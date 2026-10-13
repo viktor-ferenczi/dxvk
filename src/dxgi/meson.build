@@ -43,5 +43,6 @@ if platform != 'windows'
   pkg.generate(dxgi_dll,
     filebase: dxvk_pkg_prefix + 'dxgi',
     subdirs:  'dxvk',
+    extra_cflags: dxvk_pkg_cflags,
   )
 endif

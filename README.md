@@ -182,3 +182,4 @@ All it takes to do that is to add another WSI backend.
 DXVK Native comes with a slim set of Windows header definitions required for D3D9/11 and the MinGW headers for D3D9/11.
 In most cases, it will end up being plug and play with your renderer, but there may be certain teething issues such as:
 - `__uuidof(type)` is supported, but `__uuidof(variable)` is not supported. Use `__uuidof_var(variable)` instead.
+- `WCHAR` is `wchar_t`, which is 4 bytes on Linux, so structures like `DXGI_ADAPTER_DESC` are larger than on Windows. If the application shares these structures with code that uses the Windows layout, such as Windows-ABI bindings, build with `-Dnative_wchar16=true` to make `WCHAR` a 16-bit type. The option adds `-DDXVK_NATIVE_WCHAR16` to the pkg-config files; applications compiling against the headers need that define too.

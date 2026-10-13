@@ -99,5 +99,6 @@ if platform != 'windows'
   pkg.generate(d3d11_dll,
     filebase: dxvk_pkg_prefix + 'd3d11',
     subdirs:  'dxvk',
+    extra_cflags: dxvk_pkg_cflags,
   )
 endif

@@ -27,7 +27,18 @@ typedef int32_t *LPLONG;
 
 typedef int32_t HRESULT;
 
+// DXVK Native uses the platform wchar_t by default. Applications that
+// exchange DXGI/D3D structures with code built for the Windows ABI,
+// where WCHAR is 16 bits wide, can build with -Dnative_wchar16=true.
+#ifdef DXVK_NATIVE_WCHAR16
+#ifdef __cplusplus
+typedef char16_t WCHAR;
+#else
+typedef uint16_t WCHAR;
+#endif // __cplusplus
+#else
 typedef wchar_t WCHAR;
+#endif // DXVK_NATIVE_WCHAR16
 typedef WCHAR *NWPSTR, *LPWSTR, *PWSTR;
 typedef unsigned char UCHAR, *PUCHAR;
 
@@ -130,7 +141,7 @@ typedef UINT_PTR* PUINT_PTR;
 #endif /*STRICT*/
 
 typedef char* LPSTR;
-typedef const wchar_t* LPCWSTR;
+typedef const WCHAR* LPCWSTR;
 
 typedef struct LUID {
   DWORD LowPart;

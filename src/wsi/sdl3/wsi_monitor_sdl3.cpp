@@ -46,13 +46,10 @@ namespace dxvk::wsi {
     if (!displayId)
       return false;
 
-    std::wstringstream nameStream;
-    nameStream << LR"(\\.\DISPLAY)" << displayId;
-
-    std::wstring name = nameStream.str();
+    std::string name = str::format(R"(\\.\DISPLAY)", displayId);
 
     std::memset(Name, 0, sizeof(Name));
-    name.copy(Name, name.length(), 0);
+    str::transcodeString(Name, std::size(Name) - 1, name.c_str(), name.size());
 
     return true;
   }

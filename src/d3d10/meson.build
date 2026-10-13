@@ -33,5 +33,6 @@ if platform != 'windows'
   pkg.generate(d3d10_core_dll,
     filebase: dxvk_pkg_prefix + 'd3d10core',
     subdirs:  'dxvk',
+    extra_cflags: dxvk_pkg_cflags,
   )
 endif

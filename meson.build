@@ -174,6 +174,12 @@ else
     error('SDL3, SDL2, or GLFW are required to build dxvk-native')
   endif
   
+  dxvk_pkg_cflags = []
+  if get_option('native_wchar16')
+    compiler_args += ['-DDXVK_NATIVE_WCHAR16']
+    dxvk_pkg_cflags += ['-DDXVK_NATIVE_WCHAR16']
+  endif
+
   dxvk_name_prefix = 'dxvk_'
   dxvk_pkg_prefix = 'dxvk-'
 
